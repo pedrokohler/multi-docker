@@ -19,3 +19,14 @@ after_success:
   - docker push pedrokohler/multi-nginx
   - docker push pedrokohler/multi-server
   - docker push pedrokohler/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: 'sa-east-1'
+  app: 'multi-docker'
+  env: 'Multidocker-env'
+  bucket_name: 'elasticbeanstalk-sa-east-1-670702759269'
+  bucket_path: 'multi-docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

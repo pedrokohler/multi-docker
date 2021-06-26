@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "pedrokohler/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "pedrokohler/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "pedrokohler/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "pedrokohler/multi-nginx",
+      "essential": true,
+      "portMappings": {
+        "hostPort": 80,
+        "containerPort": 80
+      },
+      "links": [
+        "client",
+        "server"
+      ]
+    }
+  ]
+}
