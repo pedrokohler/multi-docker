@@ -4,10 +4,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t pedrokohler/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t pedrokohler/multi-client -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true pedrokohler/react-test npm run test --coverage
+  - docker run -e CI=true pedrokohler/multi-client npm run test --coverage
 
 after_success:
   - docker build -t pedrokohler/multi-client ./client
